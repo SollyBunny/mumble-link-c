@@ -57,7 +57,7 @@ struct MumbleContext* mumble_create_context() {
 		}
 	#endif
 
-	struct MumbleContext* out = malloc(sizeof(struct MumbleContext));
+	struct MumbleContext* out = (struct MumbleContext*)malloc(sizeof(struct MumbleContext));
 	if (!out) {
 		#ifdef _WIN32
 			CloseHandle(hMapObject);
