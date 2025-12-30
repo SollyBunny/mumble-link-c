@@ -10,9 +10,7 @@ static char identity[256];
 static struct MumbleContext* context = NULL;
 
 static void create_mumble_context() {
-	if (context) {
-		mumble_destroy_context(&context);
-	}
+	mumble_destroy_context(&context);
 
 	context = mumble_create_context_args("MumbleLinkTest", "Test of https://github.com/SollyBunny/mumble-link-c");
 	if (!context) {
