@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#ifdef _WIN32
+#if defined(_WIN32)
 	#include <windows.h>
 #else
 	#include <sys/mman.h>
@@ -14,7 +14,7 @@
 
 struct MumbleContext {
 	struct MumbleLinkedMem* lm;
-	#ifdef _WIN32
+	#if defined(_WIN32)
 		HANDLE hMapObject
 	#else
 		int shmfd;
@@ -25,7 +25,7 @@ struct MumbleContext {
 struct MumbleContext* mumble_create_context() {
 	struct MumbleLinkedMem* lm = NULL;
 
-	#ifdef _WIN32
+	#if defined(_WIN32)
 		HANDLE hMapObject = OpenFileMappingW(FILE_MAP_ALL_ACCESS, FALSE, L"MumbleLink");
 		if (hMapObject == NULL)
 			return;
@@ -59,7 +59,7 @@ struct MumbleContext* mumble_create_context() {
 
 	struct MumbleContext* out = (struct MumbleContext*)malloc(sizeof(struct MumbleContext));
 	if (!out) {
-		#ifdef _WIN32
+		#if defined(_WIN32)
 			CloseHandle(hMapObject);
 		#else
 			munmap(lm, sizeof(struct MumbleLinkedMem));
@@ -69,7 +69,7 @@ struct MumbleContext* mumble_create_context() {
 	}
 
 	out->lm = lm;
-	#ifdef _WIN32
+	#if defined(_WIN32)
 		out->hMapObject = hMapObject;
 	#else
 		strcpy(out->memname, memname);
@@ -116,7 +116,7 @@ void mumble_destroy_context(struct MumbleContext** context) {
 	if (*context == NULL) {
 		return;
 	}
-	#ifdef _WIN32
+	#if defined(_WIN32)
 		CloseHandle((*context)->hMapObject);
 	#else
 		munmap((*context)->lm, sizeof(struct MumbleLinkedMem));
