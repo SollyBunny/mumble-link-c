@@ -51,12 +51,12 @@ struct MumbleContext* mumble_create_context() {
 	#if defined(_WIN32)
 		HANDLE hMapObject = OpenFileMappingW(FILE_MAP_ALL_ACCESS, FALSE, L"MumbleLink");
 		if (hMapObject == NULL)
-			return;
+			return NULL;
 
 		lm = (LinkedMem *) MapViewOfFile(hMapObject, FILE_MAP_ALL_ACCESS, 0, 0, sizeof(LinkedMem));
 		if (lm == NULL) {
 			CloseHandle(hMapObject);
-			return;
+			return NULL;
 		}
 	#else
 		char memname[128];
