@@ -53,7 +53,7 @@ struct MumbleContext* mumble_create_context() {
 		if (hMapObject == NULL)
 			return NULL;
 
-		lm = (MumbleLinkedMem*)MapViewOfFile(hMapObject, FILE_MAP_ALL_ACCESS, 0, 0, sizeof(MumbleLinkedMem));
+		lm = (struct MumbleLinkedMem*)MapViewOfFile(hMapObject, FILE_MAP_ALL_ACCESS, 0, 0, sizeof(struct MumbleLinkedMem));
 		if (lm == NULL) {
 			CloseHandle(hMapObject);
 			return NULL;
