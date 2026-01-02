@@ -1,0 +1,57 @@
+name: Build mumblelinktest
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-linux:
+    name: Linux build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: make
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mumblelinktest-linux
+          path: mumblelinktest
+
+  build-linux-android:
+    name: Linux build (Android macro)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with __ANDROID__
+        run: |
+          make clean || true
+          make CFLAGS="-D__ANDROID__"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mumblelinktest-linux-android
+          path: mumblelinktest
+
+  build-windows:
+    name: Windows build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install MinGW
+        uses: egor-tensin/setup-mingw@v2
+
+      - name: Build
+        run: make
+        shell: bash
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mumblelinktest-windows
+          path: mumblelinktest.exe
