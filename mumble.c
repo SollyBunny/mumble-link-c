@@ -67,11 +67,6 @@ struct MumbleContext* mumble_create_context() {
 		if (shmfd < 0)
 			return NULL;
 
-		// if (ftruncate(shmfd, sizeof(struct MumbleLinkedMem)) < 0) {
-		// 	close(shmfd);
-		// 	return NULL;
-		// }
-
 		lm = (struct MumbleLinkedMem *)mmap(NULL, sizeof(struct MumbleLinkedMem), PROT_READ | PROT_WRITE, MAP_SHARED, shmfd, 0);
 
 		if (lm == (void*)(-1) || lm == NULL) {
