@@ -1,5 +1,29 @@
 #include "mumble.h"
 
+#if defined(__ANDROID__)
+	#define STUB
+#endif
+
+#if defined(STUB)
+
+struct MumbleContext {
+	struct MumbleLinkedMem* lm;
+};
+
+struct MumbleContext* mumble_create_context() { return NULL; }
+struct MumbleContext* mumble_create_context_args(const char* name, const char* description) { return NULL; }
+void mumble_destroy_context(struct MumbleContext** context) {}
+struct MumbleLinkedMem* mumble_get_linked_mem(struct MumbleContext* context) { return context->lm; }
+bool mumble_relink_needed(struct MumbleContext* context) { return false; }
+bool mumble_set_name(struct MumbleContext* context, const char* name) { return false; }
+bool mumble_set_identity(struct MumbleContext* context, const char* identity) { return false; }
+bool mumble_set_context(struct MumbleContext* context, const char* mumbleContext) { return false; }
+bool mumble_set_description(struct MumbleContext* context, const char* description) { return false; }
+void mumble_2d_update(struct MumbleContext* context, float x, float y) {}
+void mumble_3d_update(struct MumbleContext* context, float x, float y, float z) {}
+
+#else
+
 #include <stdio.h>
 #include <string.h>
 
@@ -186,3 +210,5 @@ void mumble_3d_update(struct MumbleContext* context, float x, float y, float z) 
 	context->lm->fAvatarPosition[2] = context->lm->fCameraPosition[2] = z;
 	context->lm->uiTick += 1;
 }
+
+#endif
