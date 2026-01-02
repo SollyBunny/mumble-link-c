@@ -14,11 +14,13 @@ struct MumbleContext* mumble_create_context() { return NULL; }
 struct MumbleContext* mumble_create_context_args(const char* name, const char* description) { return NULL; }
 void mumble_destroy_context(struct MumbleContext** context) {}
 struct MumbleLinkedMem* mumble_get_linked_mem(struct MumbleContext* context) { return context->lm; }
+// Utils
 bool mumble_relink_needed(struct MumbleContext* context) { return false; }
 bool mumble_set_name(struct MumbleContext* context, const char* name) { return false; }
 bool mumble_set_identity(struct MumbleContext* context, const char* identity) { return false; }
 bool mumble_set_context(struct MumbleContext* context, const char* mumbleContext) { return false; }
 bool mumble_set_description(struct MumbleContext* context, const char* description) { return false; }
+// Simple interface
 void mumble_2d_update(struct MumbleContext* context, float x, float y) {}
 void mumble_3d_update(struct MumbleContext* context, float x, float y, float z) {}
 
