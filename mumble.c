@@ -1,7 +1,6 @@
 #include "mumble.h"
 
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 
 #if defined(_WIN32)
@@ -10,6 +9,7 @@
 	#include <sys/mman.h>
 	#include <fcntl.h>
 	#include <stdlib.h>
+	#include <unistd.h>
 #endif
 
 struct MumbleContext {
