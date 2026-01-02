@@ -40,7 +40,7 @@ void mumble_3d_update(struct MumbleContext* context, float x, float y, float z) 
 struct MumbleContext {
 	struct MumbleLinkedMem* lm;
 	#if defined(_WIN32)
-		HANDLE hMapObject
+		HANDLE hMapObject;
 	#else
 		int shmfd;
 		char memname[128];
