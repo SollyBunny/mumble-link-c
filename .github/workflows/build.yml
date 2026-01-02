@@ -47,7 +47,7 @@ jobs:
         uses: egor-tensin/setup-mingw@v3
 
       - name: Build
-        run: make
+        run: cc mumble.c test.c -o mumblelinktest.exe
         shell: bash
 
       - name: Upload artifact
