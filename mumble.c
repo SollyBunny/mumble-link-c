@@ -102,7 +102,7 @@ struct MumbleContext* mumble_create_context_args(const char* name, const char* d
 		mumble_destroy_context(&context);
 		return NULL;
 	}
-	if (!mumble_set_description(context, name)) {
+	if (!mumble_set_description(context, description)) {
 		mumble_destroy_context(&context);
 		return NULL;
 	}
