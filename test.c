@@ -9,7 +9,7 @@
 static char identity[256];
 static struct MumbleContext* context = NULL;
 
-static void create_mumble_context() {
+static void create_mumble_context(void) {
 	mumble_destroy_context(&context);
 
 	context = mumble_create_context_args("MumbleLinkTest", "Test of https://github.com/SollyBunny/mumble-link-c");
@@ -31,7 +31,7 @@ static void create_mumble_context() {
 	}
 }
 
-int main() {
+int main(void) {
 	setlocale(LC_ALL, "");
 	srand((unsigned int)time(NULL));
 

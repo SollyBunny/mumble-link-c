@@ -1,2 +1,2 @@
 build:
-	cc -g -fsanitize=address mumble.c test.c -o mumblelinktest -Wall -Wpedantic -Wextra -Wconversion
+	cc -std=gnu99 -g -fsanitize=address mumble.c test.c -o mumblelinktest -Wall -Wpedantic -Wextra -Wconversion

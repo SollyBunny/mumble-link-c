@@ -10,7 +10,7 @@ struct MumbleContext {
 	struct MumbleLinkedMem* lm;
 };
 
-struct MumbleContext* mumble_create_context() { return NULL; }
+struct MumbleContext* mumble_create_context(void) { return NULL; }
 struct MumbleContext* mumble_create_context_args(const char* name, const char* description) { return NULL; }
 void mumble_destroy_context(struct MumbleContext** context) {}
 struct MumbleLinkedMem* mumble_get_linked_mem(struct MumbleContext* context) { return context->lm; }
@@ -48,7 +48,7 @@ struct MumbleContext {
 	#endif
 };
 
-struct MumbleContext* mumble_create_context() {
+struct MumbleContext* mumble_create_context(void) {
 	struct MumbleLinkedMem* lm = NULL;
 
 	#if defined(_WIN32)
