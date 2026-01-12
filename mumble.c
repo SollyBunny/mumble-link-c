@@ -1,10 +1,10 @@
 #include "mumble.h"
 
 #if defined(__ANDROID__) || defined(__EMSCRIPTEN__)
-	#define STUB
+	#define MUMBLE_STUB
 #endif
 
-#if defined(STUB)
+#if defined(MUMBLE_STUB)
 
 struct MumbleContext {
 	struct MumbleLinkedMem* lm;
