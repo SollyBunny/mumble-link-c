@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-linux:
-    name: Linux build
+    name: Linux
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,7 +21,7 @@ jobs:
           path: mumblelinktest
 
   build-linux-stub:
-    name: Linux build (Stub)
+    name: Linux (stub)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,8 +36,8 @@ jobs:
           name: mumblelinktest-linux-stub
           path: mumblelinktest
 
-  build-windows:
-    name: Windows build
+  build-windows-mingw:
+    name: Windows (MinGW)
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -52,5 +52,23 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mumblelinktest-windows
+          name: mumblelinktest-windows-mingw
+          path: mumblelinktest.exe
+
+  build-windows-msvc:
+    name: Windows (MSVC)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Build
+        run: cl /std:c11 /W4 /WX mumble.c test.c /Fe:mumblelinktest.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mumblelinktest-windows-msvc
           path: mumblelinktest.exe
