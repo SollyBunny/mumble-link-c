@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS // MSVC
+
 #include "mumble.h"
 
 #if defined(__ANDROID__) || defined(__EMSCRIPTEN__)
@@ -37,6 +39,8 @@ void mumble_3d_update(struct MumbleContext* context, float x, float y, float z) 
 	#include <sys/mman.h>
 	#include <fcntl.h>
 #endif
+
+
 
 struct MumbleContext {
 	struct MumbleLinkedMem* lm;
