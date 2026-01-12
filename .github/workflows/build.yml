@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build
-        run: make
+        run: cc -g -fsanitize=address mumble.c test.c -o mumblelinktest -Werror -Wall -Wpedantic -Wextra -Wconversion
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -20,21 +20,20 @@ jobs:
           name: mumblelinktest-linux
           path: mumblelinktest
 
-  build-linux-android:
-    name: Linux build (Android macro)
+  build-linux-stub:
+    name: Linux build (Stub)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build with __ANDROID__
+      - name: Build
         run: |
-          make clean || true
-          make CFLAGS="-D__ANDROID__"
+          cc -g -fsanitize=address mumble.c test.c -o mumblelinktest -Werror -Wall -Wpedantic -Wextra -Wconversion -DMUMBLE_STUB
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mumblelinktest-linux-android
+          name: mumblelinktest-linux-stub
           path: mumblelinktest
 
   build-windows:
@@ -47,7 +46,7 @@ jobs:
         uses: egor-tensin/setup-mingw@v3
 
       - name: Build
-        run: cc mumble.c test.c -o mumblelinktest.exe
+        run: cc mumble.c test.c -o mumblelinktest.exe -Werror -Wall -Wextra
         shell: bash
 
       - name: Upload artifact
