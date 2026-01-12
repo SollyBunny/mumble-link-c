@@ -180,7 +180,7 @@ bool mumble_set_context(struct MumbleContext* context, const char* mumbleContext
 	if (len + 1 > sizeof(context->lm->context))
 		return false;
 	strcpy((char*)context->lm->context, mumbleContext);
-	context->lm->context_len = len;
+	context->lm->context_len = (uint32_t)len;
 	return true;
 }
 

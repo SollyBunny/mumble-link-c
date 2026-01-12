@@ -33,7 +33,7 @@ static void create_mumble_context() {
 
 int main() {
 	setlocale(LC_ALL, "");
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 	printf("Enter your name: ");
 	if (!fgets(identity, sizeof(identity), stdin)) {
@@ -43,7 +43,7 @@ int main() {
 	identity[strcspn(identity, "\n")] = '\0';
 
 	create_mumble_context();
-	mumble_2d_update(context, rand() % 10, rand() % 10);
+	mumble_2d_update(context, (float)(rand() % 10), (float)(rand() % 10));
 
 	while (true) {
 		printf("\n");
