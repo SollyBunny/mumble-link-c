@@ -26,11 +26,12 @@ void mumble_3d_update(struct MumbleContext* context, float x, float y, float z) 
 
 #else
 
+#include <stdlib.h>
+
 #if defined(_WIN32)
 	#include <windows.h>
 #else
 	#include <stdio.h>
-	#include <stdlib.h>
 	#include <string.h>
 	#include <unistd.h>
 	#include <sys/mman.h>
