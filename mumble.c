@@ -1,6 +1,6 @@
 #include "mumble.h"
 
-#if defined(__ANDROID__)
+#if defined(__ANDROID__) || defined(__EMSCRIPTEN__)
 	#define STUB
 #endif
 
