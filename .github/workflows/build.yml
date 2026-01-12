@@ -36,6 +36,21 @@ jobs:
           name: mumblelinktest-linux-stub
           path: mumblelinktest
 
+  build-linux-cpp:
+    name: Linux (C++)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: c++ -std=c++11 -g -fsanitize=address -x c++ mumble.c test.c -o mumblelinktest -Werror -Wall -Wpedantic -Wextra -Wconversion
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mumblelinktest-linux-cpp
+          path: mumblelinktest
+
   build-windows-mingw:
     name: Windows (MinGW)
     runs-on: windows-latest
