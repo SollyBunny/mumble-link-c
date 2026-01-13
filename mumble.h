@@ -8,6 +8,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#if !defined(MUMBLE_STUB) && (defined(__ANDROID__) || defined(__EMSCRIPTEN__))
+	#define MUMBLE_STUB 1
+#endif
+
 /**
  * @brief Shared memory layout for the Mumble Link positional audio plugin.
  *

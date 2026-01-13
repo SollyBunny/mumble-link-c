@@ -2,11 +2,7 @@
 
 #include "mumble.h"
 
-#if defined(__ANDROID__) || defined(__EMSCRIPTEN__)
-	#define MUMBLE_STUB
-#endif
-
-#if defined(MUMBLE_STUB)
+#if MUMBLE_STUB == 1
 
 struct MumbleContext {
 	struct MumbleLinkedMem* lm;
