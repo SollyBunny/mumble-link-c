@@ -28,8 +28,8 @@ void mumble_3d_update(struct MumbleContext* context, float x, float y, float z) 
 
 #if defined(_WIN32)
 	#include <windows.h>
-	_Static_assert(sizeof(uint32_t) == sizeof(UINT32), "uint32 and UINT32");
-	_Static_assert(sizeof(uint32_t) == sizeof(DWORD), "uint32 and DWORD");
+	_Static_assert(sizeof(uint32_t) == sizeof(UINT32), "uint32 and UINT32 must be the same size");
+	_Static_assert(sizeof(uint32_t) == sizeof(DWORD), "uint32 and DWORD must be the same size");
 #else
 	#include <stdio.h>
 	#include <string.h>
