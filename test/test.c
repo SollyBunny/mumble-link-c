@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS // MSVC
 
-#include "mumble.h"
+#include "../mumble.h"
 
 #include <time.h>
 #include <locale.h>
